@@ -1,0 +1,236 @@
+
+* {
+  position: relative;
+  box-sizing: border-box;
+}
+#navbar{
+    display: flex;
+    align-items: center;
+    position: relative;
+    top: 0px;    
+
+}
+#navbar::before{
+    content: " ";
+    background-color: black;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0px;
+    left:0px;
+    z-index: -1;
+    opacity: 0.9;
+    
+}
+/* Navigation bar: logo and images  */
+
+ /* Navigation bar: List Styling  */
+ #navbar ul{
+     display: flex;   
+     font-family: 'Baloo Bhai 2', cursive;
+ }
+ 
+ #navbar ul li{
+
+     list-style: none;
+     font-size: 1.3rem;
+    
+ }
+
+ #navbar ul li a{
+    color: white;
+
+    display: block; 
+    padding: 3px 22px;
+    border-radius: 20px;
+    text-decoration: none;
+}
+ #navbar ul li a:hover{
+    color: black;
+    background-color: white;
+
+ }
+
+body {
+  margin: 0;
+  font-family: sans-serif;
+  font-size: 18px;
+  line-height: 28px;
+  color: var(--black);
+  background: var(--grey-light);
+}
+
+/* Typography */
+.center {
+  text-align: center;
+  color: white;
+}
+
+h1 {
+  margin: 0.5em 0 1em;
+  font-size: 26px;
+  line-height: 1.2;
+  color: var(--almost-black);
+}
+
+h2 {
+  margin: 0.5em 0 1em;
+  font-size: 20px;
+  line-height: 1.2;
+  color: var(--grey-dark);
+}
+
+p {
+  margin: 24px 0;
+}
+
+/* Cards */
+/* .card-wrapper {
+  margin: 0 auto;
+  padding: 90px 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+  display: flex;
+} */
+.card-wrapper{
+margin: 0 auto;
+    padding: 30px 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+    display: flex;
+    width: 100%;
+    color: white;
+    
+}
+.maincc{
+  background-image: url('https://media.istockphoto.com/photos/fog-in-black-smoke-and-mist-on-wooden-table-halloween-backdrop-picture-id1341515382?b=1&k=20&m=1341515382&s=170667a&w=0&h=tWLxX861vcc63wxX1flAvwVhZouZ3blavWpUsu0K55k=');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.gap{
+  height: 100vh;
+  width: 100vw;
+}
+.card {
+  margin: 0 30px 60px;
+  padding: 20px 20px;
+  width: 460px;
+  box-shadow: 0 8px 26px -4px rgba(0,0,0,0.15);
+  border-radius: 5px;
+  background: var(--white);
+  color: white;
+}
+
+@media only screen and (max-width: 520px) {
+  .card-wrapper {
+    padding: 30px 0 0;
+  }
+}
+
+@media only screen and (max-width: 520px) {
+  .card {
+    margin: 0 0 30px;
+    width: 100%;
+    border-radius: 0;
+  }
+}
+
+/* Forms */
+form {
+  transition: opacity .15s ease;
+}
+
+form.loading {
+  pointer-events: none;
+  opacity: 0.75;
+}
+
+label {
+  margin: 0 0 2px;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 1px;
+  color: var(--grey-medium);
+  display: block;
+}
+
+.field {
+  margin: 0 0 24px;
+  padding: 11px 16px 9px;
+  width: 100%;
+  font-size: 16px;
+  line-height: 26px;
+  color: var(--almost-black);
+  border: 1px solid var(--grey);
+  border-radius: 4px;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+  display: block;
+  background: var(--almost-white);
+  transition: border-color .15s ease;
+}
+
+.field:focus {
+  border-color: var(--grey-medium);
+  outline: none;
+}
+
+.error {
+  margin: 0;
+  font-size: 16px;
+  line-height: 26px;
+  text-align: center;
+  color: var(--red);
+}
+
+.error--hidden {
+  display: none;
+}
+
+/* Buttons */
+.btn {
+  margin: 0 0 24px;
+  padding: 11px 30px 10px;
+  font-size: 14px;
+  line-height: 24px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--white);
+  border: none;
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
+  display: inline-block;
+  background: var(--primary);
+  transition: color .15s ease, background-color .15s ease;
+}
+
+.btn:hover {
+  background: var(--primary-dark);
+}
+
+.btn--secondary {
+  color: var(--almost-black);
+  background: var(--secondary);
+}
+
+.btn--secondary:hover {
+  background: var(--secondary-dark);
+}
+
+input[type=submit] {
+  margin: 34px auto 24px;
+  display: block;
+}
+
+
+
+
+
+
+
+.c1{
+  margin-top: 2em;
+  background-color: grey;
+}

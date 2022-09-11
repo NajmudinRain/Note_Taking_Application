@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <!-- <div class="card">
+
+      <h1 class="center">Log In</h1>
+
+      <form name="login_form">
+
+        <label for="email">Email</label>
+        <input type="email" name="email" class="field" required>
+
+        <label for="password">Password</label>
+        <input type="password" name="password" class="field" required>
+
+        <p class="error error--hidden"></p>
+
+        <input type="submit" value="Log In" class="btn">
+      
+      </form>
+      
+    </div>
+  
+  </div> -->
+  <div class="modal" id="modal">
+    <div class="close-div">
+        <button   class="close-button" data-close-button  >&times;</button>
+    </div>
+    <label class = "username">USERNAME</label>
+    <input type="text" class = "usertext" name="username" id = "usertext" placeholder="Enter your username"/>
+    <div id="name_error" class="nameerror"></div>
+    <label class = "email">EMAIL</label>
+    <input type="text" class = "emailtext" name="email" id = "emailtext" placeholder="Enter your email"/>
+    <div id="email_error" class="emailerror"></div>
+    <label class = "password">PASSWORD</label>
+    <input type="password" class = "passwordtext" name="password" id = "passwordtext" placeholder="Enter your password"/>
+    <div id="password_error" class="passworderror"></div>
+    <input type="button" style="cursor: pointer;" class = " bt submit" id="submit" value = "Sign Up" />           
+</div>
+
+{% endblock %}
+
+
+

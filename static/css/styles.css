@@ -234,3 +234,13 @@ input[type=submit] {
   margin-top: 2em;
   background-color: grey;
 }
+
+#signout{
+  padding: 0.3em;
+    width: 9em;
+    height: 3em;
+    margin-left: 56em;
+    margin-top: -1.5em;
+  
+}
+

@@ -1,20 +1,16 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <!-- <div class="card-wrapper">
+  <div class="card-wrapper">
 
-    <div class="card" style="background-color: black;">
-
-      <h1 class="center">Dashboard</h1>
-      <p class="center">You are currently logged in.</p>
-
+    <div class="card" style="background-color: black;" id="signout">
       <div class="center">
-        <a href="/user/signout" class="btn btn--secondary">Sign Out</a>
+        <a href="/user/signout" class="btn btn--secondary" id="sbut">Sign Out</a>
       </div>
     
     </div>
 
-    <div class="card" style="background-color: black;">
+    <!-- <div class="card" style="background-color: black;">
 
       <h2 class="center">Your Info</h2>
 
@@ -24,10 +20,10 @@
         <strong>Email:</strong> {{ session['user']['email'] }}
       </p>
     
-    </div>
+    </div> -->
   
-  </div> -->
-  <!-- <form action="/" method="POST">
+  </div> 
+   <!-- <form action="/" method="POST">
     <h3>Update Note</h3>
     <div class="form-group">
       <label for="recipient-name" class="col-form-label">Title:</label>

@@ -1,5 +1,6 @@
 import json
-from flask import Flask,jsonify,request,session,redirect,url_for
+from turtle import title
+from flask import Flask,jsonify,request,session,redirect,url_for,render_template,flash
 from passlib.hash import pbkdf2_sha256
 import uuid
 import pymongo
@@ -28,7 +29,7 @@ class User:
             "password":request.form.get('password')
         }
          # print(request.form)
-        db.user.delete_many({"name":"najmudin"})
+        # db.user.delete_many({"name":"najmudin"})
         user["password"]=pbkdf2_sha256.encrypt(user["password"])
         if db.user.find_one({"email":user['email']}):
             return jsonify({"error":"email address already in use"}),400
@@ -53,5 +54,24 @@ class User:
         return jsonify({"error":"Invalid login credentials"}),401
     
 
+class Notes:
+    
+   def addNotes(self):
+    if request.method == 'POST':
+        title = request.form.get('title')
+        note = request.form.get('note')
+    if len(note) < 1 :
+            flash('Note is too short, please write in detail !!!',category="error")
+    else:
+        # new_note = Note(title=title,text=note,user_id=current_user.id)
+        notes=db.notes.insert_one({
+            'title':title,
+            'note':note
+        })
+    # return jsonify({'title':notes['title'],'note':notes['note']}),200
+    # return jsonify({'result': "succesfully added note"}),200
+    for i in list(notes):
+        print(i)
+    return render_template('notes.html')
 
 

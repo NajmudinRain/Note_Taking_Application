@@ -1,14 +1,11 @@
-from functools import wraps
-from flask import Flask,render_template,session,redirect,url_for
-from user.models import User
 
+from functools import wraps
+from urllib import request
+from flask import Flask,render_template,session,redirect,url_for
+from user.models import Notes, User
 
 app=Flask(__name__)
 app.secret_key='thisisasecretkey' 
-# this key can be randomize
-# client=pymongo.MongoClient('localhost',27017) 
-# # 127.0.0.1
-# db=client.user_login_system
 
 #Decorators
 def login_required(f):
@@ -39,13 +36,19 @@ def dashboard():
     return render_template('dashboard.html')
     # return "<h1>welcome to dashboard<h1>"
 
-@app.route("/user/signout")
+@app.route("/user/signout") 
 def signout():
     return User().signout()
 
 @app.route("/user/login", methods=['GET','POST'])
 def login():
     return User().login()
+
+@app.route("/notes/addnote/",methods=['GET','POST'])
+def addNotes():
+    # print("najmudinr")
+    # print(request.form['title'])
+     return Notes().addNotes()
     
 
 if __name__=="__main__":

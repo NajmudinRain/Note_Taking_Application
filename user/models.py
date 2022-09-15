@@ -1,5 +1,4 @@
 import json
-from turtle import title
 from flask import Flask,jsonify,request,session,redirect,url_for,render_template,flash
 from passlib.hash import pbkdf2_sha256
 import uuid
@@ -54,24 +53,39 @@ class User:
         return jsonify({"error":"Invalid login credentials"}),401
     
 
-class Notes:
+class Notes(User):
     
-   def addNotes(self):
-    if request.method == 'POST':
-        title = request.form.get('title')
-        note = request.form.get('note')
-    if len(note) < 1 :
+    
+    def addNotes(self):
+        if request.method == 'POST':
+            title = request.form.get('title')
+            note = request.form.get('note')
+        if len(note) < 1 :
             flash('Note is too short, please write in detail !!!',category="error")
-    else:
+        else:
         # new_note = Note(title=title,text=note,user_id=current_user.id)
-        notes=db.notes.insert_one({
+
+            notes=db.notes.insert_one({  
+             'id':session['user'] ['_id'],    
             'title':title,
             'note':note
         })
+        # print(user['_id'])
     # return jsonify({'title':notes['title'],'note':notes['note']}),200
     # return jsonify({'result': "succesfully added note"}),200
-    for i in list(notes):
-        print(i)
-    return render_template('notes.html')
+    # for i in list(notes):
+    #     print(i) 
+        
+       
+        userid=session['user'] ['_id']
+        resnotes=db.notes.find({'id':userid})
+        resnoteslist=[]
+        for i in resnotes:
+            resnoteslist.append(i)
+        # print(resnotes)
+        return render_template('notes.html',notes=resnoteslist)
+
+        def updateNotes(self,id):
+            
 
 

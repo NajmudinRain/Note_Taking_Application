@@ -1,8 +1,7 @@
-
 from functools import wraps
 from urllib import request
 from flask import Flask,render_template,session,redirect,url_for
-from user.models import Notes, User
+from user.models import Notes,User
 
 app=Flask(__name__)
 app.secret_key='thisisasecretkey' 
@@ -45,11 +44,16 @@ def login():
     return User().login()
 
 @app.route("/notes/addnote/",methods=['GET','POST'])
+@login_required
 def addNotes():
     # print("najmudinr")
     # print(request.form['title'])
      return Notes().addNotes()
-    
 
+@app.route("/update_note/<id>")
+@login_required
+def updateNotes(id):
+    # return render_template('update.html')
+ 
 if __name__=="__main__":
     app.run(debug=True)

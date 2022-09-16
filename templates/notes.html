@@ -2,20 +2,20 @@
 {%block content1 %}
  <div class= "container mt-3">
  <table class="table">
-      {% if notes|length ==0  %}
+       <!-- {% if notes|length ==0  %}
       <div class="alert alert-danger" role="alert">
           There is no note, ADD your first note now!!
       </div>
-      {% else %}
-<!-- 
-      <thead class="table-dark">
+      {% else %}  -->
+
+      <!-- <thead class="table-dark">
           <tr>
             <th scope="col">Title </th>
             <th scope="col">Notes</th>
             <th scope="col">Action</th>
           </tr>
         </thead>
-        <tbody> -->
+        <tbody> --> 
           {% for note in notes %}   
           <tr> 
             <td>{{note.title}}</td>
@@ -25,12 +25,12 @@
               <!-- href="/update_note/{{note._id}}"
               href="/delete_note/{{note._id}}" -->
               <!-- <button type="button" data-toggle="modal" data-target="#exampleModal" class="btn btn-success btn-sm mx-2"><a href="/update/{{note.id}}">update</a></button> -->
-              <a href="{{url_for('updateNotes',id=note._id)}}" type="button" class="btn btn-success btn-sm mx-2 update ">Update</button>
-              <a href="{{url_for('updateNotes',id=note._id)}}" type="button" class="btn btn-danger btn-sm mx-2 delete ">delete</button>
+              <a href="{{url_for('updateNote',id=note._id)}}" type="button" class="btn btn-success btn-sm mx-2 update ">Update</button>
+              <a href="{{url_for('deleteNote',id=note._id)}}" type="button" class="btn btn-danger btn-sm mx-2 delete ">delete</button>
           </td>
           </tr>
           {% endfor %}
-          {% endif %}
+           <!-- {% endif %}  -->
         </tbody>
     </table>
 </div>  

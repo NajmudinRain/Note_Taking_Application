@@ -1,3 +1,4 @@
+
 from functools import wraps
 from urllib import request
 from flask import Flask,render_template,session,redirect,url_for
@@ -32,7 +33,7 @@ def signup():
 @app.route('/dashboard/')
 @login_required
 def dashboard():
-    return render_template('dashboard.html')
+    return render_template('dashboard.html',)
     # return "<h1>welcome to dashboard<h1>"
 
 @app.route("/user/signout") 
@@ -50,10 +51,16 @@ def addNotes():
     # print(request.form['title'])
      return Notes().addNotes()
 
-@app.route("/update_note/<id>")
+@app.route("/update_note/<id>", methods=['GET','POST'])
 @login_required
-def updateNotes(id):
+def updateNote(id):
+    return Notes().update_Note(id)
     # return render_template('update.html')
+
+@app.route("/delete_note/<id>",methods=['GET','POST'])
+@login_required
+def deleteNote(id):
+    return Notes().delete_Note(id)
  
 if __name__=="__main__":
     app.run(debug=True)

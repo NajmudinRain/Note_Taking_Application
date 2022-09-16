@@ -1,1 +1,24 @@
-<h1>you are in update page</h1>
+{% extends 'base.html' %}
+{% block content %}
+{% for post in posts %}
+<style>  
+.form_title{
+margin-top: 100px;
+margin-right: 200px;
+}
+
+</style>
+
+<div class=" right-panel-active"></div>
+<div class="container__form container--signin" style="margin: top 100px;">
+  <form action="" class="form" id="form4" method="post">
+        <h2 class="form__title">Update Post</h2>
+        <input type="text" name="title" value="{{ post["title"] }}" class="input" />
+        <textarea id="description" rows="4" cols="50" name="note" value=""
+        class="input">{{ post["note"] }}</textarea>
+        <button class="btn">Post</button>
+ </form>
+</div>
+</div>
+{% endfor %}
+{% endblock %}

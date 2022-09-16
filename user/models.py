@@ -3,6 +3,7 @@ from flask import Flask,jsonify,request,session,redirect,url_for,render_template
 from passlib.hash import pbkdf2_sha256
 import uuid
 import pymongo
+from bson.objectid import ObjectId
 
 #Database
 client=pymongo.MongoClient('127.0.0.1',27017) 
@@ -85,7 +86,53 @@ class Notes(User):
         # print(resnotes)
         return render_template('notes.html',notes=resnoteslist)
 
-        def updateNotes(self,id):
+    def update_Note(self,id):
+        if request.method=='GET':
+            print(id)
+            update = db.notes.find({'_id':ObjectId(id)})
+            oldvalues = []
+            for i in update:
+                print(i)
+                oldvalues.append(i)
             
+        if request.method=='POST':
+            title= request.form['title']
+            note= request.form['note'] 
+            userid= session["user"]["_id"]
+            # db.note.update_one({'_id':ObjectId(id)},{'$set':{'title':title,'note':note}})
+
+                # user = db.find_one({'email':uemail},{'_id':0,'name':1})
+            db.notes.delete_many({'_id':ObjectId(id)})
+            insertnewNote = db.notes.insert_one({'id':userid,
+            'title':title,
+            'note':note
+            })
+            
+            
+
+            resnotes=db.notes.find({})
+            resnoteslist=[]
+            for i in resnotes:
+             resnoteslist.append(i)
+            flash('Post updated succesfully','success')
+
+            return render_template('notes.html',notes=resnoteslist)
+
+        return render_template("update.html",posts=oldvalues)
+    
+    def delete_Note(self,id):
+        db.notes.delete_one({'_id':ObjectId(id)})
+        resnotes=db.notes.find({})
+        resnoteslist=[]
+        for i in resnotes:
+            resnoteslist.append(i)
+        flash('post delete successfully','success')
+        return render_template('notes.html',notes=resnoteslist)
+
+
+
+        
+
+
 
 

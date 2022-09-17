@@ -33,7 +33,8 @@ def signup():
 @app.route('/dashboard/')
 @login_required
 def dashboard():
-    return render_template('dashboard.html',)
+    return Notes().showDashboard()
+    # return User
     # return "<h1>welcome to dashboard<h1>"
 
 @app.route("/user/signout") 

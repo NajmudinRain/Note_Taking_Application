@@ -64,6 +64,25 @@
         <th scope="col">Action</th>
       </tr>
     </thead>
+    <tbody> 
+      {% if notes|length ==0  %}
+      <div class="alert alert-danger" role="alert">
+          There is no note, ADD your first note now!!
+      </div>
+      {% else %}  
+      {% for note in notes %}   
+      <tr> 
+        <td>{{note.title}}</td>
+        <td>{{note.note}}</td>
+        <td>
+          <a href="{{url_for('updateNote',id=note._id)}}" type="button" class="btn btn-success btn-sm mx-2 update ">Update</button>
+          <a href="{{url_for('deleteNote',id=note._id)}}" type="button" class="btn btn-danger btn-sm mx-2 delete ">delete</button>
+      </td>
+      </tr>
+      
+      {% endfor %}
+      {% endif %}
+    </tbody>
   </table>
 </div>
 {%block content1 %}

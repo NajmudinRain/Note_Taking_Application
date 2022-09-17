@@ -55,8 +55,6 @@ class User:
     
 
 class Notes(User):
-    
-    
     def addNotes(self):
         if request.method == 'POST':
             title = request.form.get('title')
@@ -79,20 +77,25 @@ class Notes(User):
         
        
         userid=session['user'] ['_id']
+        # session['notes']=notes
         resnotes=db.notes.find({'id':userid})
         resnoteslist=[]
         for i in resnotes:
             resnoteslist.append(i)
         # print(resnotes)
+        # session['notes']=resnotes
+        # print(session['notes'])
+        # print(session['notes']['title'])
+        flash('Note is added','success')
         return render_template('notes.html',notes=resnoteslist)
 
     def update_Note(self,id):
         if request.method=='GET':
-            print(id)
+            # print(id)
             update = db.notes.find({'_id':ObjectId(id)})
             oldvalues = []
             for i in update:
-                print(i)
+                # print(i)
                 oldvalues.append(i)
             
         if request.method=='POST':
@@ -100,8 +103,8 @@ class Notes(User):
             note= request.form['note'] 
             userid= session["user"]["_id"]
             # db.note.update_one({'_id':ObjectId(id)},{'$set':{'title':title,'note':note}})
-
-                # user = db.find_one({'email':uemail},{'_id':0,'name':1})
+            # db.note.update_one({"_id":ObjectId(id)}, {'$set' : {"title":title, 'note':note}})
+            # user = db.find_one({'email':uemail},{'_id':0,'name':1})
             db.notes.delete_many({'_id':ObjectId(id)})
             insertnewNote = db.notes.insert_one({'id':userid,
             'title':title,
@@ -128,6 +131,17 @@ class Notes(User):
             resnoteslist.append(i)
         flash('post delete successfully','success')
         return render_template('notes.html',notes=resnoteslist)
+
+
+    def showDashboard(self):
+         userid=session['user'] ['_id']
+         resnotes=db.notes.find({'id':userid})
+         resnoteslist=[]
+         for i in resnotes:
+            resnoteslist.append(i)
+
+         return render_template('dashboard.html',notes=resnoteslist)
+
 
 
 

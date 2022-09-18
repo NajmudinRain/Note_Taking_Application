@@ -250,3 +250,10 @@ input[type=submit] {
 .delete{
   background-color: red;
 }
+.bck{
+  background-color: black;
+color: wheat;
+}
+.td{
+  color: wheat;
+}

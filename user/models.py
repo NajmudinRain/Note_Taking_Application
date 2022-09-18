@@ -1,3 +1,4 @@
+
 import json
 from flask import Flask,jsonify,request,session,redirect,url_for,render_template,flash
 from passlib.hash import pbkdf2_sha256
@@ -82,12 +83,13 @@ class Notes(User):
         resnoteslist=[]
         for i in resnotes:
             resnoteslist.append(i)
-        # print(resnotes)
+        print(resnoteslist)
         # session['notes']=resnotes
         # print(session['notes'])
         # print(session['notes']['title'])
+        
         flash('Note is added','success')
-        return render_template('notes.html',notes=resnoteslist)
+        return render_template('dashboard.html',notes=resnoteslist)
 
     def update_Note(self,id):
         if request.method=='GET':
@@ -119,7 +121,7 @@ class Notes(User):
              resnoteslist.append(i)
             flash('Post updated succesfully','success')
 
-            return render_template('notes.html',notes=resnoteslist)
+            return render_template('dashboard.html',notes=resnoteslist)
 
         return render_template("update.html",posts=oldvalues)
     
@@ -130,7 +132,7 @@ class Notes(User):
         for i in resnotes:
             resnoteslist.append(i)
         flash('post delete successfully','success')
-        return render_template('notes.html',notes=resnoteslist)
+        return render_template('dashboard.html',notes=resnoteslist)
 
 
     def showDashboard(self):

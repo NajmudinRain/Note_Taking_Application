@@ -1,4 +1,6 @@
-
+import speech_recognition as sr
+import gtts
+from playsound import playsound
 from functools import wraps
 from urllib import request
 from flask import Flask,render_template,session,redirect,url_for

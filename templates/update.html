@@ -2,16 +2,55 @@
 {% block content %}
 {% for post in posts %}
 <style>  
+.frm1{
+ margin-left: 10em;
+ margin-right: 20em;
+ margin-top: 5em;
+ box-shadow: 2em 2em 2em rgb(27, 28, 26);
+}
+#btn1{
+background-color: rgb(80, 80, 155);
+padding: .6em;
+width: 6em;
+text-align: center;
+margin-left: 25em;
+}
+label{
+  font-weight: bold;
+  
+}
+.dv1{
+  background-color: rgb(99, 63, 156);
+}
+.intr{
+  margin-left: 6em;
+
+}
+input{
+  width: 26em;
+  border: 1em;
+}
 </style>
 
 <div class=" right-panel-active"></div>
-<div class="container__form container--signin" style="margin: top 100px;">
-  <form action="" class="form" id="form4" method="post">
+<div class="frm1">
+  <form action="" class="form" id="form4" method="post" class = "">
+    <div class="dv1">
+      <div class="intr">
         <h2 class="form__title">Update Post</h2>
+        <br>
+        <label for="title">Update Title : </label>
         <input type="text" name="title" value="{{ post["title"] }}" class="input" />
+        <br>
+        
+        <label for=""> Update Note : </label>
         <textarea id="description" rows="4" cols="50" name="note" value=""
         class="input">{{ post["note"] }}</textarea>
-        <button class="btn">Post</button>
+        <br>
+
+        <button id="btn1">Post</button>
+      </div>
+    </div>
  </form>
 </div>
 </div>

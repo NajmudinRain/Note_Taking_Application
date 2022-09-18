@@ -1,11 +1,14 @@
+
+<div class="bck">
+
 {% extends "base.html" %}
 
 {% block content %}
 <div class="card-wrapper">
 
-  <div class="card" style="background-color: black;" id="signout">
+  <div class="card" style="background-color: rgb(74, 24, 74);" id="signout">
     <div class="center">
-      <a href="/user/signout" class="btn btn--secondary" id="sbut">Sign Out</a>
+      <a href="/user/signout" class="btn btn-primary" id="sbut">Sign Out</a>
     </div>
 
   </div>
@@ -35,7 +38,6 @@
     </div>
     <button type="submit" class="btn btn-primary c1">update</button>
 </form> -->
-
 
 <div class="container mt-3">
   <form name="note" action="/notes/addnote" method="post">
@@ -71,7 +73,7 @@
       </div>
       {% else %}  
       {% for note in notes %}   
-      <tr> 
+      <tr class="td"> 
         <td>{{note.title}}</td>
         <td>{{note.note}}</td>
         <td>
@@ -87,4 +89,4 @@
 </div>
 {%block content1 %}
 {%endblock%}
-{% endblock %}
+{% endblock %}</div>

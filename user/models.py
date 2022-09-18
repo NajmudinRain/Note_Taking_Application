@@ -1,4 +1,5 @@
 
+from datetime import datetime
 import json
 from flask import Flask,jsonify,request,session,redirect,url_for,render_template,flash
 from passlib.hash import pbkdf2_sha256
@@ -8,14 +9,20 @@ from bson.objectid import ObjectId
 
 #Database
 client=pymongo.MongoClient('127.0.0.1',27017) 
+v1 = False
+# session['logged_in'] = False
 # 127.0.0.1
 db=client.user_login_system
-class User:
+
+class User: 
+    def get_database(self):
+        return db
+    v1 = False
     def start_session(self,user):
         del user['password']
         session['logged_in']=True
         session['user']=user
-        return jsonify(user),200
+        return jsonify(user)
     def signup(self):
         # print(request.form.get(name))
         #create the user object
@@ -36,20 +43,24 @@ class User:
             return jsonify({"error":"email address already in use"}),400
             
         if db.user.insert_one(user):
-            return self.start_session(user)
+            v1=True
+            return( self.start_session(user))
 
         return jsonify({"error":"signup failed"}),400
 
     
     def signout(self):
+        v1=False
         session.clear()
         return redirect('/')
 
     def login(self):
+
         user=db.user.find_one({
             "email":request.form.get('email')
         })
         if user and pbkdf2_sha256.verify(request.form.get('password'),user['password']):
+            v1=True
             return self.start_session(user)
 
         return jsonify({"error":"Invalid login credentials"}),401
@@ -68,7 +79,8 @@ class Notes(User):
             notes=db.notes.insert_one({  
              'id':session['user'] ['_id'],    
             'title':title,
-            'note':note
+            'note':note,
+            'date_added':datetime.now()
         })
         # print(user['_id'])
     # return jsonify({'title':notes['title'],'note':notes['note']}),200
@@ -79,11 +91,11 @@ class Notes(User):
        
         userid=session['user'] ['_id']
         # session['notes']=notes
-        resnotes=db.notes.find({'id':userid})
+        resnotes=db.notes.find({'id':userid}).sort('date_added',-1)
         resnoteslist=[]
         for i in resnotes:
             resnoteslist.append(i)
-        print(resnoteslist)
+        # print(resnoteslist)
         # session['notes']=resnotes
         # print(session['notes'])
         # print(session['notes']['title'])
@@ -110,12 +122,13 @@ class Notes(User):
             db.notes.delete_many({'_id':ObjectId(id)})
             insertnewNote = db.notes.insert_one({'id':userid,
             'title':title,
-            'note':note
+            'note':note,
+            'date_added':datetime.now()
             })
             
             
 
-            resnotes=db.notes.find({})
+            resnotes=db.notes.find({}).sort('date_added',-1)
             resnoteslist=[]
             for i in resnotes:
              resnoteslist.append(i)
@@ -137,7 +150,7 @@ class Notes(User):
 
     def showDashboard(self):
          userid=session['user'] ['_id']
-         resnotes=db.notes.find({'id':userid})
+         resnotes=db.notes.find({'id':userid}).sort('date_added',-1)
          resnoteslist=[]
          for i in resnotes:
             resnoteslist.append(i)

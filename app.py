@@ -4,6 +4,7 @@ from playsound import playsound
 from functools import wraps
 from urllib import request
 from flask import Flask,render_template,session,redirect,url_for
+import speech
 from user.models import Notes,User
 
 app=Flask(__name__)
@@ -25,6 +26,7 @@ def login_required(f):
 # this will be shown at homepage 
 @app.route("/")
 def homepage():
+    # print(session['logged_in'])
     return render_template("home.html")
 
 @app.route("/user/signup", methods=['POST'])
@@ -39,7 +41,8 @@ def dashboard():
     # return User
     # return "<h1>welcome to dashboard<h1>"
 
-@app.route("/user/signout") 
+@app.route("/user/signout")
+@login_required 
 def signout():
     return User().signout()
 
@@ -64,6 +67,14 @@ def updateNote(id):
 @login_required
 def deleteNote(id):
     return Notes().delete_Note(id)
- 
+
+
+@app.route("/use_audio",methods=['GET','POST'])
+@login_required
+def startAudio():
+    return speech.startAudio()
+    
+
+
 if __name__=="__main__":
     app.run(debug=True)

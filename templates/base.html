@@ -9,6 +9,7 @@
     integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
   <link rel="stylesheet" href="/static/css/normalize.css">
   <link rel="stylesheet" href="/static/css/styles.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 
 </head>
 <body>
@@ -20,7 +21,20 @@
         <li class="item"><a href="/">Home</a></li>
         <li class="item"><a href="#WriteNotes">WriteNotes</a></li>
         <li class="item"><a href="#About">About Us</a></li>
-        <li class="item"><a href="#contact">Contact us</a></li>
+        <li class="item"><a href="#contact">Contact Us </a></li>
+     
+        
+        
+        {% if session['logged_in']==True %}  
+        <li class="item" id="dwn" style="color: white ;">
+        
+          <a href="{{url_for('startAudio')}}"><i id= "i12" onclick="fun()"></i> </a>
+       
+       </li>
+       {% endif %}
+       <!-- {% for note in notes %} -->
+       <!-- {%endfor%} -->
+        
     </ul>
 
 </nav>
@@ -44,11 +58,31 @@
   {% block content %}
     {# Template inserted here #}
   {% endblock %}
+  <script>
+   v1 =  document.getElementById("i12");
+   v1.className ="bi bi-mic-mute-fill";
+    // var v1 = "bi bi-mic-mute-fill"
+    //"bi bi-mic-fill"
+    function fun(){
+      if(v1.className == "bi bi-mic-mute-fill"){
+    document.getElementById("i12").className =  "bi bi-mic-fill";}
+    else{
+    document.getElementById("i12").className =  "bi bi-mic-mute-fill";
+
+    }
+
+    }
+
+  </script>
   
   <script src="/static/js/jquery.js"></script>
   <script src="/static/js/script.js"></script>
   
 </body>
+
+<script src="https://kit.fontawesome.com/3f7077b4bb.js" crossorigin="anonymous"></script>
+
+<!-- <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script> -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"
   integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
 <script></script>

@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="maincc">
+    <div class="card-wrapper">
+      <div id="sign">
+      <div class="card">
+  
+        <h1 class="center" style="color:white">Log In</h1> 
+  
+         <form name="login_form">
+  
+          <label for="email" style="color:white">Email</label>
+          <input type="email" name="email" class="field" required>
+  
+          <label for="password" style="color:white">Password</label>
+          <input type="password" name="password" class="field" required>
+  
+          <p class="error error--hidden"></p>
+  
+          <input type="submit" value="Log In" class="btn" style="color:white">
+          <h1 style="color:white">Have No Account ?</h1>
+          <a href="#create" style="color:white" >Click here</a>
+        
+        </form>
+        </div>
+        
+      </div>
+      
+  
+  
+    </div>
+    <div  class="card-wrapper">
+      <div id="create">
+        <div class="card">
+  
+          <h1 class="center">Create an Account</h1>
+    
+          <form name="signup_form">
+    
+            <label for="name">Name</label>
+            <input type="text" name="name" class="field" required>
+    
+            <label for="email">Email</label>
+            <input type="email" name="email" class="field" required>
+    
+            <label for="password">Password</label>
+            <input type="password" name="password" class="field" required>
+    
+            <p class="error error--hidden"></p>
+    
+            <input type="submit" value="Sign Up" class="btn">
+  
+            <h1>Already Have Account ?</h1>
+          <a href="#sign"  style="color:white">Click here</a>
+    
+          
+          </form>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

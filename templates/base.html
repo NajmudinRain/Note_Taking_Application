@@ -10,7 +10,16 @@
   <link rel="stylesheet" href="/static/css/normalize.css">
   <link rel="stylesheet" href="/static/css/styles.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+<style>
+  #img1{
 
+width: 2em;
+height: 2em;
+margin-right: .2em;
+margin-bottom: 10px;
+
+}
+</style>
 </head>
 <body>
   <nav id="navbar">
@@ -18,10 +27,11 @@
         <img src="logo.jpg" alt="MyNotes.com">
     </div> -->
     <ul>
+       <img src="../static/th.jfif" alt="" id="img1">
         <li class="item"><a href="/">Home</a></li>
-        <li class="item"><a href="#WriteNotes">WriteNotes</a></li>
-        <li class="item"><a href="#About">About Us</a></li>
-        <li class="item"><a href="#contact">Contact Us </a></li>
+        <li class="item"><a href="{{url_for('writeNotes')}}">WriteNotes</a></li>
+        <li class="item"><a href="{{url_for('loginpage')}}">login</a></li>
+        <li class="item"><a href="{{url_for('aboutus')}}">About Us </a></li>
      
         
         
@@ -31,12 +41,11 @@
           <a href="{{url_for('startAudio')}}"><i id= "i12" onclick="fun()"></i> </a>
        
        </li>
-       {% endif %}
+       {% endif %} 
        <!-- {% for note in notes %} -->
        <!-- {%endfor%} -->
         
-    </ul>
-
+   </ul>
 </nav>
 {% with messages = get_flashed_messages(with_categories=true) %}
 
@@ -58,6 +67,7 @@
   {% block content %}
     {# Template inserted here #}
   {% endblock %}
+
   <script>
    v1 =  document.getElementById("i12");
    v1.className ="bi bi-mic-mute-fill";
@@ -86,4 +96,5 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"
   integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
 <script></script>
+
 </html>

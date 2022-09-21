@@ -10,12 +10,13 @@ import os
 
 r = sr.Recognizer()
 
-ACTIVATION_COMMAND= "take note"
+ACTIVATION_COMMAND= "hi note"
 
 def get_audio():
     with sr.Microphone() as source:
             print("Say as per instruction")
-            audio= r.listen(source,phrase_time_limit=4)
+            audio= r.listen(source,phrase_time_limit=5)
+            # 
     return audio
 
 def audio_to_text(audio):
@@ -61,10 +62,10 @@ def startAudio():
         # print(command)
         if ACTIVATION_COMMAND in command.lower():
             print("activated")
-            flash("voice is activated",'success')
+            # flash("voice is activated",'success')
  
             while(i==0):
-                play_sound("say a title name?")
+                play_sound("hi naaz say a title name?")
                 i=i+1
             
             
@@ -72,7 +73,7 @@ def startAudio():
             title=audio_to_text(titleAudio)
             if title:
                 print(title)
-                flash("title is recorded",'success')
+                # flash("title is recorded",'success')
                 # play_sound(title)
             
             while(i==1):

@@ -1,0 +1,6 @@
+google sign in
+text recommender
+paggging
+working on style and ui logic
+delete all
+retrive the delete notes.

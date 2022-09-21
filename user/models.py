@@ -52,7 +52,7 @@ class User:
     def signout(self):
         v1=False
         session.clear()
-        return redirect('/')
+        return redirect('/loginpage')
 
     def login(self):
 
